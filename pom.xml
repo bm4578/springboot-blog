@@ -15,6 +15,7 @@
         <module>SpringBoot-common</module>
         <module>springboot-springsecurity</module>
         <module>SpringBoot-admin</module>
+        <module>SpringBoot-blog</module>
     </modules>
     <!--    springboot版本-->
     <parent>
