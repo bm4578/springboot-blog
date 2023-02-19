@@ -1,6 +1,7 @@
 import axios from 'axios';
-import {userStore} from "../store/user/user";
 import {ElMessage} from 'element-plus'
+import {userStore,userInfo} from "../store/user/user.js";
+
 //1. 创建axios对象
 const service = axios.create();
 
@@ -19,6 +20,12 @@ service.interceptors.request.use(config => {
 //3. 响应拦截器
 service.interceptors.response.use(response => {
     //判断code码
+    if (response.data.code === 601){
+        const store = userStore()
+        const user = userInfo()
+        store.clearToken();
+        user.clearData();
+    }
     return response.data;
 },error => {
     return Promise.reject(error);

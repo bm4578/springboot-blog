@@ -20,8 +20,21 @@
                   {{ item.menuName }}
                 </router-link>
               </li>
-              <li @click="showModal = true" v-if="isLogin">登录/注册</li>
-              <li v-if="!isLogin">已登录</li>
+              <li @click="showModal = true" v-if="isLogin">
+                <n-gradient-text type="info">
+                  登录/注册
+                </n-gradient-text></li>
+
+              <li v-if="!isLogin">
+                  <n-dropdown :options="options" @select="handleSelect">
+                    <n-avatar
+                        style="margin-top: 5px"
+                        round
+                        size="small"
+                        :src='avatar'
+                    />
+                  </n-dropdown>
+              </li>
             </ul>
           </div>
         </div>
@@ -42,14 +55,14 @@
             </n-form-item>
 
             <n-form-item label="密码" path="password">
-              <n-input type="password" @input="handlePasswordInput" v-model:value="formValue.password"
+              <n-input type="password"  v-model:value="formValue.password"
                        placeholder="输入密码"/>
             </n-form-item>
             <div class="imgCode">
               <n-form-item label="验证码" path="imgCode">
                 <n-input v-model:value="formValue.imgCode" placeholder="输入用户名"/>
               </n-form-item>
-              <img :src="img.imgUrl" alt="加载失败"/>
+              <img :src="img.imgUrl" alt="加载失败" style="margin-left: 5px"/>
               <n-button
                   text
                   tag="a"
@@ -101,13 +114,14 @@
 <script setup>
 import {ref, reactive, h, onMounted, markRaw, watch} from 'vue'
 import {UserAstronaut} from '@vicons/fa'
-import {user_login, isToken} from '../../api/user.js'
-import {userStore} from "../../store/user/user.js";
+import {user_login, isToken,user_info} from '../../api/user.js'
+import {userStore,userInfo} from "../../store/user/user.js";
 import router from "../../router";
-import {ElMessage, ElButton} from 'element-plus'
-import {storeToRefs} from 'pinia'
+import {ElMessage} from 'element-plus'
+
 //持久化存储
 const store = userStore()
+const user = userInfo()
 //菜单信息
 const menu = markRaw([
   {
@@ -116,6 +130,31 @@ const menu = markRaw([
     icon: UserAstronaut
   }
 ])
+//用户菜单
+const options =reactive( [
+  {
+    label: "用户中心",
+    key: "profile",
+  },
+  {
+    label: "退出登录",
+    key: "logout",
+  }
+])
+//头像
+let avatar = ref(null)
+const handleSelect = (key)=>{
+  //用户资料
+  if (key === "profile"){
+    router.push('/user')
+  }
+  if (key === "logout"){
+    //清除token
+    store.clearToken();
+    user.clearData();
+    router.go(0)
+  }
+}
 //登录注册
 let showModal = ref(false)
 //初始信息
@@ -186,10 +225,14 @@ const handleValidateClick = (e) => {
             message: '登录成功 ！！！' + '欢迎您' + formValue.username + '。',
             type: 'success',
           })
+          //存入token
           store.setToken(res.msg)
           isLogin.value= false
-          showModal.value = false
-          router.go(0)
+          //存入用户信息
+          UserInfo()
+          setTimeout(function () {
+            location.reload();
+          },500)
         } else {
           ElMessage({
             message: res.result,
@@ -198,11 +241,25 @@ const handleValidateClick = (e) => {
         }
       })
     } else {
-      console.log(errors);
+      ElMessage({
+        message: errors,
+        type: 'error',
+      })
     }
   });
 }
 
+
+//获取用户基本信息
+const UserInfo =()=>{
+  //获取头像基本信息
+  user_info().then(res=>{
+    if (res.code === 200){
+      //存入pinia
+      user.setData(res.result)
+    }
+  })
+}
 //是否显示登录/注册
 let isLogin = ref(false)
 onMounted(() => {
@@ -210,12 +267,14 @@ onMounted(() => {
   isToken().then(res => {
     //已经过期
     if (res.code === 601){
-      store.clearToken();
       isLogin.value = true
     }
     //未过期
     if (!res){
       isLogin.value= false
+      showModal.value = false
+      //设置头像
+      avatar.value = user.$state.data.isImg
     }
   })
 })
@@ -264,8 +323,8 @@ onMounted(() => {
 
 .imgCode img {
   width: 90px;
-  height: 34px;
-  margin-top: 25px;
+  height: 33px;
+  margin-top: 27px;
 }
 
 .imgTime {

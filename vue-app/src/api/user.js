@@ -15,10 +15,10 @@ export function isToken(){
         method:"post",
     })
 }
-export function user_info(data){
+//获取用户基本信息
+export function user_info(){
     return request({
-        url:'/api/file',
+        url:'/api/userManagement/menus',
         method:"get",
-        data:qs.stringify(data)
     })
 }
