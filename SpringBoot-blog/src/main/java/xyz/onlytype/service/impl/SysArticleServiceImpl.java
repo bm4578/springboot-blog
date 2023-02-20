@@ -19,9 +19,65 @@ import org.springframework.stereotype.Service;
 public class SysArticleServiceImpl extends ServiceImpl<SysArticleDao, SysArticle> implements SysArticleService {
     @Autowired
     private SysArticleDao sysArticleDao;
+    /**
+     * 分页查询文章列表
+     * @param pageNum 分页条数
+     * @param pageSize 分页大小
+     * @return
+     */
+
     @Override
     public PageVO<SysArticle> pageList(int pageNum, int pageSize) {
         return PageVO.pageList(sysArticleDao.selectPage(new Page<>(pageNum,pageSize),null));
+    }
+
+    /**
+     * 添加文章
+     *
+     * @param sysArticle 添加文章
+     * @return
+     */
+    @Override
+    public Boolean addArticle(SysArticle sysArticle) {
+        SysArticle article = new SysArticle();
+        article.setArticleId(sysArticle.getArticleId());
+        article.setUid(sysArticle.getUid());
+        article.setArticleTitle(sysArticle.getArticleTitle());
+        article.setArticleList(sysArticle.getArticleList());
+        article.setArticleType(sysArticle.getArticleType());
+        article.setArticleCreate(sysArticle.getArticleCreate());
+        article.setArticleUpdate(sysArticle.getArticleUpdate());
+        return sysArticleDao.insert(article) > 0;
+    }
+
+    /**
+     * 文章删除
+     *
+     * @param articleId 文章id
+     * @return
+     */
+    @Override
+    public Boolean deleteArticle(String articleId) {
+        return sysArticleDao.deleteById(articleId) >0 ;
+    }
+
+    /**
+     * 修改文章
+     *
+     * @param sysArticle 文章主体
+     * @return
+     */
+    @Override
+    public Boolean updateArticle(SysArticle sysArticle) {
+        SysArticle article = new SysArticle();
+        article.setArticleId(sysArticle.getArticleId());
+        article.setUid(sysArticle.getUid());
+        article.setArticleTitle(sysArticle.getArticleTitle());
+        article.setArticleList(sysArticle.getArticleList());
+        article.setArticleType(sysArticle.getArticleType());
+        article.setArticleCreate(sysArticle.getArticleCreate());
+        article.setArticleUpdate(sysArticle.getArticleUpdate());
+        return sysArticleDao.updateById(article) > 0;
     }
 }
 

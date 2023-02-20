@@ -22,8 +22,6 @@ class SysUserControllerTest {
     private SysUserDao userDao;
     @Test
     void register() {
-//        Boolean test = sysUser.register("test", "123456", "2109961182@qq.com");
-//        System.out.println(test);
         List<UserRoleVo> rolesByUser = userDao.findRolesByUserId("420029352e7efb783f9396feb1a5d5e2");
         System.out.println(rolesByUser);
     }

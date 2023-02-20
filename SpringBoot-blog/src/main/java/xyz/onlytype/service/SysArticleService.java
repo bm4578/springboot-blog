@@ -19,5 +19,26 @@ public interface SysArticleService extends IService<SysArticle> {
      */
     PageVO<SysArticle> pageList(int pageNum, int pageSize);
 
+    /**
+     * 添加文章
+     * @param sysArticle 添加文章
+     * @return
+     */
+    Boolean addArticle(SysArticle sysArticle);
+
+    /**
+     * 文章删除
+     * @param articleId 文章id
+     * @return
+     */
+    Boolean deleteArticle(String articleId);
+
+    /**
+     * 修改文章
+     * @param sysArticle 文章主体
+     * @return
+     */
+    Boolean updateArticle(SysArticle sysArticle);
+
 }
 

@@ -54,10 +54,7 @@ public class UserController {
         try {
             UserDetails userDetails = sysUser.loadUserByUsername(username);
             String username1 = userDetails.getUsername();
-            System.out.println(username1);
-            System.out.println("===========");
             return ResultModel.ok();
-
         } catch (UsernameNotFoundException e) {
             return ResultModel.error("登录失败",e.getMessage());
         }
