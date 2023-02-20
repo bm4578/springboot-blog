@@ -6,7 +6,9 @@
         <div class="left">
           <div class='content-nav'>
             <ul>
-              <li>logo</li>
+              <li>
+                <router-link :to="{name:'home'}">logo</router-link>
+              </li>
             </ul>
           </div>
         </div>

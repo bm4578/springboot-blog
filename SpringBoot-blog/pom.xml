@@ -16,4 +16,13 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <!--springsecurity -->
+        <dependency>
+            <groupId>xyz.onlytype</groupId>
+            <artifactId>springboot-springsecurity</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
 </project>

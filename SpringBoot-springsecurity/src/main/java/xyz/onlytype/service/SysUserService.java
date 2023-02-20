@@ -19,8 +19,25 @@ public interface SysUserService extends IService<SysUser>{
      */
     void sendMessage(String recipient,String template,String message);
 
-    //用户信息查询
+    /**
+     * 用户信息查询
+     * @return 用户列表
+     */
     UserInfoVo findByUserinfo();
+
+    /**
+     * 逻辑删除
+     * @param userId 用户id
+     * @return true/false
+     */
+    Boolean deleteUser(String userId);
+
+    /**
+     * 恢复删除用户
+     * @param userId 用户id
+     * @return true/false
+     */
+    Boolean recoverUser(String userId);
 
 }
 

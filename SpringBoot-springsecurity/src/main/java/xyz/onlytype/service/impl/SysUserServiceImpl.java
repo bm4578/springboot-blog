@@ -33,7 +33,7 @@ import java.util.List;
  */
 @Schema(description = "用户表(SysUser)表服务实现类")
 @Service("sysUserService")
-public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> implements SysUserService{
+public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
     @Schema(hidden = true)
     @Value("${spring.mail.username}")
     // 邮件发送人
@@ -49,6 +49,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     private TokenManager tokenManager;
     @Autowired
     private SysMenuDao sysMenuDao;
+
     /**
      * 发送邮箱信息
      *
@@ -71,13 +72,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
 
     /**
      * 获取权限菜单
+     *
      * @return
      */
 
     @Override
     public UserInfoVo findByUserinfo() {
         //获取token
-        String token= (String)SecurityContextHolder.getContext().getAuthentication().getCredentials();
+        String token = (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
         //解析token
         Claims claims = tokenManager.getClaimsFromToken(token);
         //基本信息
@@ -91,14 +93,36 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         for (SysMenu sysMenu : sysMenus) {
             ArrayList<SysMenu> menuArrayList = new ArrayList<>();
             for (SysMenu menu : menuList) {
-                if (sysMenu.getMenuCode().equals(menu.getParentCode())){
-                   menuArrayList.add(menu);
+                if (sysMenu.getMenuCode().equals(menu.getParentCode())) {
+                    menuArrayList.add(menu);
                 }
             }
             sysMenu.setChildNode(menuArrayList);
         }
         byUserinfo.setSysMenus(sysMenus);
         return byUserinfo;
+    }
+
+    /**
+     * 逻辑删除
+     *
+     * @param userId 用户id
+     * @return true/false
+     */
+    @Override
+    public Boolean deleteUser(String userId) {
+        return sysUserDao.deleteById(userId) > 0;
+    }
+
+    /**
+     * 恢复删除用户
+     *
+     * @param userId 用户id
+     * @return true/false
+     */
+    @Override
+    public Boolean recoverUser(String userId) {
+        return sysUserDao.recoverUser(userId) > 0;
     }
 }
 

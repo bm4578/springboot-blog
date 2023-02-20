@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <!--项目基本信息-->
     <groupId>xyz.onlytype</groupId>
     <artifactId>SpringBoot</artifactId>
@@ -37,6 +36,7 @@
         <swagger-ui-version>2.0.9</swagger-ui-version>
         <springfox-version>3.0.0</springfox-version>
         <jjwt.version>0.9.1</jjwt.version>
+        <commons-lang-version>2.6</commons-lang-version>
     </properties>
 
 
@@ -86,10 +86,17 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-version}</version>
             </dependency>
+            <!--jwt-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt.version}</version>
+            </dependency>
+            <!--commons-lang-->
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

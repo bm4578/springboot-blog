@@ -30,6 +30,8 @@ public interface SysUserDao extends BaseMapper<SysUser> {
     //权限菜单查询
     List<SysMenu> finMenuByUserRoles(String roleKey);
 
+    Integer recoverUser(String userId);
+
 
 }
 

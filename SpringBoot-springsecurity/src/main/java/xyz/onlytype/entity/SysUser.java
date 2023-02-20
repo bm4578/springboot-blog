@@ -31,7 +31,7 @@ public class SysUser extends Model<SysUser> implements Serializable{
     //头像
     private String isImg;
     //逻辑删除
-    @TableField(exist = false)
+    @TableLogic
     private Integer isEnabled;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date createTime = new Date();

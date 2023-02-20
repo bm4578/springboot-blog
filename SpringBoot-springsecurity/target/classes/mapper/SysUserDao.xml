@@ -44,6 +44,16 @@
                                                                                ON r.role_id = rm.role_id
         WHERE r.role_key = #{roleKey}
     </select>
+    <!--恢复已删除用户-->
+    <update id="recoverUser">
+        update sys_user
+        <set>
+        <if test="is_enabled != null and is_enabled != ''">
+            is_enabled = 1,
+        </if>
+        </set>
+        where sys_user.user_id = #{userId}
+    </update>
 
 
 </mapper>
