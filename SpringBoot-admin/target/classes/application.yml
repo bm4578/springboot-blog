@@ -27,7 +27,6 @@ spring:
       mail:
         debug: true # 完整打印发邮件日志
     default-encoding: UTF-8
-
   # 配置文件上传大小限制
   servlet:
     multipart:
