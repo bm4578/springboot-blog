@@ -24,11 +24,12 @@
               @expand="collapsed = false"
           >
             <n-menu
+                @update:value="handleUpdateValue"
                 :collapsed="collapsed"
                 :collapsed-width="64"
                 :collapsed-icon-size="22"
                 :options="menuOptions"
-                key-field="menuCode"
+                key-field="menuName"
                 label-field="menuName"
                 children-field="childNode"
             />
@@ -53,13 +54,16 @@ let user_info= reactive(
     username:'',
     isImg:''
   })
+//选中菜单执行操作
+const handleUpdateValue = (key,item)=>{
+  console.log(key,item)
+}
 onMounted(()=>{
   user_info.username=user.$state.data.username
   user_info.isImg=user.$state.data.isImg
   for (let sysMenusKey in user.$state.data.sysMenus) {
     menuOptions[sysMenusKey] = user.$state.data.sysMenus[sysMenusKey]
   }
-  console.log(user.$state.data.sysMenus)
 })
 
 </script>
