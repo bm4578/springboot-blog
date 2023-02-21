@@ -52,7 +52,7 @@ import {UserAstronaut} from '@vicons/fa'
 import {isToken} from '../../api/user.js'
 import {userStore,userInfo} from "../../store/user/user.js";
 import router from "../../router";
-import login from '../user/User.vue'
+import login from '../user/Login.vue'
 
 //持久化存储
 const store = userStore()
