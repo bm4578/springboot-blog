@@ -51,9 +51,16 @@ spring:
 #    cache-enabled: false
 #    call-setters-on-nulls: true
 #
+# 设置日志
 #logging:
 #  level:
-#    root: info
+#    root: warn
+#  file:
+#    name: SpringBoot-blog.log
+#  logback:
+#    rollingpolicy:
+#      max-file-size: 10MB
+#      file-name-pattern: server.%d{yyyy-MM-dd}.%i.log
 #
 #knife4j:
 #  # 开启增强配置
