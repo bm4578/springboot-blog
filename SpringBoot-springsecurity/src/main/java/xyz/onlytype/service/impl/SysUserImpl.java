@@ -1,6 +1,7 @@
 package xyz.onlytype.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,7 @@ import java.util.*;
  * @date 2023/1/28 3:25 下午
  */
 @Service("SysUserImpl")
+@Slf4j
 public class SysUserImpl implements UserDetailsService {
     @Autowired
     private SysUserDao sysUserDao;
@@ -41,6 +43,7 @@ public class SysUserImpl implements UserDetailsService {
         queryWrapper.eq(SysUser::getUsername, username);
         SysUser user = sysUserDao.selectOne(queryWrapper);
         if (Objects.isNull(user)) {
+            log.error("用户名不存在 ！！！");
             throw new CustomerAuthenionException("用户名不存在 ! ! !");
         }
         //根据用户名从数据库中查询角色信息

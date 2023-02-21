@@ -2,9 +2,6 @@ package xyz.onlytype.config.web;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -27,7 +24,7 @@ public class InitProject implements ApplicationRunner{
     public void run(ApplicationArguments args) throws Exception {
         InetAddress localHost = InetAddress.getLocalHost();
         String url = "http://"+localHost.getCanonicalHostName()+":"+port;
-        log.warn("接口地址："+url);
-        log.warn("swagger文档地址:  " +url+"/doc.html");
+        log.warn("接口地址：{}",url);
+        log.warn("swagger文档地址:{}/doc.html",url);
     }
 }

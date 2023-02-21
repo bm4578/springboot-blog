@@ -64,12 +64,14 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
             String inputCode = request.getParameter("code");
             //判断验证码是否为空
             if(StringUtils.isEmpty(inputCode)) {
+                log.error("验证码不能为空 ！");
                 throw new CustomerAuthenionException("验证码不能为空!");
             }
             //从redis获取验证码
             Integer  imgCode = (Integer) redisTemplate.opsForValue().get("verifyCode");
             //判断验证码是否相等
             if(!inputCode.equalsIgnoreCase(String.valueOf(imgCode))){
+                log.error("验证码输入错误 ！");
                 throw new CustomerAuthenionException("验证码输入错误!");
             }
             //从表单中获取用户信息
@@ -79,9 +81,8 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
                             request.getParameter("password")
                             , new ArrayList<>())
             );
-        } catch (UsernameNotFoundException e) {
-           throw new CustomerAuthenionException(e.getMessage());
         } catch (BadCredentialsException e){
+            log.error("密码错误 ！");
             throw new PasswordException("密码错误 ! ! !");
         }
     }
@@ -113,6 +114,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
             // 返回生成的token
             ResponseUtils.out(response, ResultModel.ok(token));
         } catch (Exception e) {
+            log.error("token生成异常");
             ResultModel.error("token生成异常", e.getMessage());
         }
     }

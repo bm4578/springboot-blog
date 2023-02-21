@@ -1,5 +1,6 @@
 package xyz.onlytype.security.Filter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +27,7 @@ import java.util.List;
  * @title 权限过滤器
  * @date 2023/1/28 12:36 下午
  */
+@Slf4j
 public class TokenAuthFilter extends BasicAuthenticationFilter {
     private TokenManager tokenManager;
     private RedisTemplate<String, Object> redisTemplate;
@@ -84,10 +86,12 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
                 token = request.getParameter("token");
             }
             if (StringUtils.isEmpty(token)) {
+                log.error("token不存在 ！");
                 throw new CustomerAuthenionException("token不存在！");
             }
             //判断token是否过期
             if (tokenManager.isTokenExpired(token)) {
+                log.error("token过期 ！");
                 throw new CustomerAuthenionException("token过期");
             }
             // TODO 添加权限信息到上下文

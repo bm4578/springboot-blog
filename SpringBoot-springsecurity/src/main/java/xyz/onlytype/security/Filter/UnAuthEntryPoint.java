@@ -1,5 +1,6 @@
 package xyz.onlytype.security.Filter;
 
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import xyz.onlytype.config.utils.ResponseUtils;
@@ -21,7 +22,13 @@ public class UnAuthEntryPoint implements AuthenticationEntryPoint {
      */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
+        String msg = "";
+        if(exception instanceof InsufficientAuthenticationException){
+            msg = "token不存在！";
+        }else {
+            msg = exception.getMessage();
+        }
         //返回信息
-        ResponseUtils.out(response, ResultModel.error(601,"暂无权限 ! ! !"));
+        ResponseUtils.out(response, ResultModel.error(601,msg));
     }
 }
