@@ -11,9 +11,7 @@
     }"
     >
       <router-link :to="{name:'article',params:{num:add}}" tag="a">
-
         {{ item.articleTitle }}
-      jjj
       </router-link>
       <template #footer>
         <n-tag :bordered="false" type="info" size="small">
