@@ -4,11 +4,11 @@
 *.class
 
 ###本地开发环境
-/application-dev.yml
+*.yml
 ## 忽略测试文件
 target/
 test/
-# Log file
+# Log fi
 *.log
 
 # BlueJ files
