@@ -1,5 +1,10 @@
+
+## 参考---https://github.com/github/gitignore/blob/main/Java.gitignore
 # Compiled class file
 *.class
+
+###本地开发环境
+application-dev.yml
 
 # Log file
 *.log
