@@ -31,13 +31,12 @@ public class ArticleController {
      * @return
      */
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "path", dataType = "int", name = "pageNum", value = "页面", required = true),
-            @ApiImplicitParam(paramType = "path", dataType = "int", name = "pageSize", value = "页数", required = true)
+            @ApiImplicitParam(paramType = "path", dataType = "int", name = "pageNum", value = "页数", required = true),
+            @ApiImplicitParam(paramType = "path", dataType = "int", name = "pageSize", value = "大小", required = true),
     })
     @ApiOperation(value = "分页查询文章", notes = "分页查询文章", httpMethod = "GET")
-    @GetMapping("/{pageNum}/{pageSize}")
+    @GetMapping("all/{pageNum}/{pageSize}")
     public ResultModel selectArticle(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-        return ResultModel.ok("查询成功",articleService.pageList(pageNum, pageSize));
+        return ResultModel.ok(articleService.pageList(pageNum, pageSize));
     }
-
 }

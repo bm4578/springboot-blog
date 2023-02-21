@@ -1,6 +1,8 @@
 <template>
   <div class="app">
     <n-card
+        style="margin-top: 20px"
+        v-for="item in article_list.blogList"
         embedded
         hoverable
         :bordered="false"
@@ -8,12 +10,14 @@
       footer: 'soft'
     }"
     >
-      <router-link :to="{name:'article',params:{num:add}}" tag="a"> {{ add }}</router-link>
-      <!--      如果你年轻的时候不 996，你什么时候可以 996？你一辈子没有-->
-<!--      996，你觉得你就很骄傲了？这个世界上，我们每一个人都希望成功，都希望美好生活，都希望被尊重，我请问大家，你不付出超越别人的努力和时间，你怎么能够实现你想要的成功？-->
+      <router-link :to="{name:'article',params:{num:add}}" tag="a">
+
+        {{ item.articleTitle }}
+      jjj
+      </router-link>
       <template #footer>
         <n-tag :bordered="false" type="info" size="small">
-          暑夜
+          {{item.articleType}}
         </n-tag>
       </template>
     </n-card>
@@ -21,9 +25,26 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
-
+import {ref,reactive,onMounted} from "vue";
+import {articleList} from "../../api/article";
 let add = ref("01")
+let article_list = reactive(
+    {
+      pageIndex:'',
+      pageSize:'',
+      total:'',
+      blogList:[],
+    }
+)
+
+onMounted(() => {
+  articleList(1,2).then(res=>{
+    article_list.pageIndex= res.result.pageIndex
+    article_list.pageSize= res.result.pageSize
+    article_list.total=res.result.total
+    article_list.blogList= res.result.rows
+  })
+})
 </script>
 
 <style scoped>
