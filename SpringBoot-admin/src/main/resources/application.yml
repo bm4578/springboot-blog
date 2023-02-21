@@ -15,12 +15,12 @@ spring:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql://192.168.99.102:3306/minio?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
 #    username: root
-#    password: root517230
+#    password: ######## mysql密码
 #  #redis配置
 #  redis:
 #    host: 192.168.99.102
 #    port: 6379
-#    password: root517230
+#    password: ######### redis密码
 #    timeout: 10000
 #  mail:
 #    protocol: smtp # 邮件协议
