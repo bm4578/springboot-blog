@@ -5,7 +5,8 @@
 
 ###本地开发环境
 application-dev.yml
-
+## 忽略测试文件
+test/
 # Log file
 *.log
 
