@@ -28,7 +28,7 @@
                 :collapsed-width="64"
                 :collapsed-icon-size="22"
                 :options="menuOptions"
-                key-field="whateverKey"
+                key-field="menuCode"
                 label-field="menuName"
                 children-field="childNode"
             />
