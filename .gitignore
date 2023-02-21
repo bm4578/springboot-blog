@@ -7,7 +7,7 @@
 application-dev.yml
 ## 忽略测试文件
 target/
-
+test/
 # Log file
 *.log
 
