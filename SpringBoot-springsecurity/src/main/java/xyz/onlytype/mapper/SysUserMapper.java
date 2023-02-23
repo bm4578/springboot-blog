@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import xyz.onlytype.entity.SysMenu;
 import xyz.onlytype.entity.SysUser;
-import xyz.onlytype.vo.UserInfoVo;
-import xyz.onlytype.vo.UserRoleVo;
+import xyz.onlytype.domain.vo.UserInfoVo;
+import xyz.onlytype.domain.vo.UserRoleVo;
 
 /**
  * 用户表(SysUser)表数据库访问层

@@ -3,7 +3,7 @@ package xyz.onlytype.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import xyz.onlytype.entity.SysRole;
-import xyz.onlytype.vo.SysUserRoleVO;
+import xyz.onlytype.domain.vo.SysUserRoleVO;
 
 import java.util.List;
 

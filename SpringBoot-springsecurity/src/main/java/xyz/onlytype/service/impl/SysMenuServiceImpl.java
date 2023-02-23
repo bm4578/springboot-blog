@@ -1,6 +1,8 @@
 package xyz.onlytype.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import xyz.onlytype.entity.SysMenu;
 import xyz.onlytype.service.SysMenuService;
@@ -32,8 +34,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         menu.setMenuName(sysMenu.getMenuName());
         menu.setMenuUrl(sysMenu.getMenuUrl());
         menu.setMenuIcon(sysMenu.getMenuIcon());
-        menu.setMenuCode(sysMenu.getMenuCode());
-        menu.setParentCode(sysMenu.getParentCode());
+
+        if (StringUtils.isEmpty(sysMenu.getParentCode())){
+            //父菜单 为空时，默认使用雪花算法生成子id---->一级菜单
+            menu.setMenuCode(String.valueOf(IdWorker.getId()));
+        }else {
+            //不为空时，传入用户设置的父id----->二级菜单
+            menu.setParentCode(sysMenu.getParentCode());
+            menu.setMenuCode(String.valueOf(IdWorker.getId()));
+        }
         return sysMenuMapper.insert(menu) > 0;
     }
 
