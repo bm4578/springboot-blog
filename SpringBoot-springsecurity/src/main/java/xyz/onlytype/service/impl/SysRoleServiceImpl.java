@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import xyz.onlytype.entity.SysRole;
 import xyz.onlytype.mapper.SysRoleMapper;
 import xyz.onlytype.service.SysRoleService;
-import xyz.onlytype.vo.SysUserRoleVO;
+import xyz.onlytype.domain.vo.SysUserRoleVO;
 
 import java.util.List;
 

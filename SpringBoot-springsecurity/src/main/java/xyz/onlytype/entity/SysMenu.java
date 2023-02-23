@@ -28,7 +28,6 @@ public class SysMenu implements Serializable {
     /**
      * code
      */
-    @TableId
     private String menuCode;
 
     /**

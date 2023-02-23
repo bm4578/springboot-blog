@@ -2,7 +2,7 @@ package xyz.onlytype.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import xyz.onlytype.entity.SysUser;
-import xyz.onlytype.vo.UserInfoVo;
+import xyz.onlytype.domain.vo.UserInfoVo;
 
 /**
  * 用户表(SysUser)表服务接口

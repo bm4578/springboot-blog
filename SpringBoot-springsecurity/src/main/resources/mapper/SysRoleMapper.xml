@@ -16,7 +16,7 @@
         role_id,role_name,role_key,
         create_time,update_time
     </sql>
-    <select id="selectUserRole" resultType="xyz.onlytype.vo.SysUserRoleVO">
+    <select id="selectUserRole" resultType="xyz.onlytype.domain.vo.SysUserRoleVO">
         SELECT r.role_id,u.username,r.role_name,r.create_time,r.update_time FROM sys_role AS r
                                                                                      LEFT JOIN sys_user_role AS sur
                                                                                                ON r.role_id = sur.role_id

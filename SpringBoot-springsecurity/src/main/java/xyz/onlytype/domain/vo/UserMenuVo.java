@@ -1,4 +1,4 @@
-package xyz.onlytype.vo;
+package xyz.onlytype.domain.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;

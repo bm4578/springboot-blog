@@ -15,7 +15,7 @@ import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.security.token.TokenManager;
 import xyz.onlytype.service.SysUserService;
 import org.springframework.stereotype.Service;
-import xyz.onlytype.vo.UserInfoVo;
+import xyz.onlytype.domain.vo.UserInfoVo;
 
 import java.util.ArrayList;
 import java.util.List;
