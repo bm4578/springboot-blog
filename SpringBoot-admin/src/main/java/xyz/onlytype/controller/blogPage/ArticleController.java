@@ -1,4 +1,4 @@
-package xyz.onlytype.controller;
+package xyz.onlytype.controller.blogPage;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

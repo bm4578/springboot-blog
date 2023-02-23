@@ -1,4 +1,4 @@
-package xyz.onlytype.controller;
+package xyz.onlytype.controller.user;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;

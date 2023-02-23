@@ -47,6 +47,7 @@ public class SysUserImpl implements UserDetailsService {
         }
         //根据用户名从数据库中查询角色信息
         List<String> roleByName = sysUserMapper.findRoleByUserId(user.getUserId());
+        System.out.println(roleByName);
         //添加相应权限
         SecurityUser securityUser = new SecurityUser();
         securityUser.setSysUser(user);

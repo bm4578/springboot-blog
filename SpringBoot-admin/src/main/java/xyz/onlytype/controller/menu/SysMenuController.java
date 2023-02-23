@@ -15,11 +15,11 @@ import xyz.onlytype.service.SysUserService;
 
 /**
  * @author 白也
- * @title 菜单管理
+ * @title 权限菜单管理
  * @date 2023/2/23 9:27 上午
  */
 
-@Api(value = "/api/userManagement", tags = {""})
+@Api(value = "/api/userManagement", tags = {"菜单管理"})
 @RestController
 @RequestMapping("/api/userManagement")
 public class SysMenuController {
