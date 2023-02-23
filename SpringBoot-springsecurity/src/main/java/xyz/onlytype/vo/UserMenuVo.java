@@ -1,14 +1,11 @@
 package xyz.onlytype.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import xyz.onlytype.entity.SysMenu;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
