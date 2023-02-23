@@ -1,21 +1,21 @@
 package xyz.onlytype.mapper;
 
-import java.util.List;
-
+import xyz.onlytype.entity.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import xyz.onlytype.entity.SysMenu;
 
 /**
- * 菜单表
-(SysMenu)表数据库访问层
- *
- * @author 白也
- * @since 2023-02-12 20:44:30
- */
+* @author 白也
+* @description 针对表【sys_menu(菜单表
+)】的数据库操作Mapper
+* @createDate 2023-02-23 10:27:34
+* @Entity xyz.onlytype.entity.SysMenu
+*/
 @Mapper
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
 }
+
+
+
 

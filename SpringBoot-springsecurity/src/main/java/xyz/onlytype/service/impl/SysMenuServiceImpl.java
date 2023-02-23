@@ -2,23 +2,20 @@ package xyz.onlytype.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.onlytype.mapper.SysMenuMapper;
 import xyz.onlytype.entity.SysMenu;
 import xyz.onlytype.service.SysMenuService;
+import xyz.onlytype.mapper.SysMenuMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * 菜单表
- * (SysMenu)表服务实现类
- *
- * @author 白也
- * @since 2023-02-12 20:44:31
- */
-@Service("sysMenuService")
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+* @author 白也
+* @description 针对表【sys_menu(菜单表
+)】的数据库操作Service实现
+* @createDate 2023-02-23 10:27:34
+*/
+@Service
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
+    implements SysMenuService{
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
@@ -68,4 +65,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         return sysMenuMapper.updateById(sysMenu) > 0;
     }
 }
+
+
+
 
