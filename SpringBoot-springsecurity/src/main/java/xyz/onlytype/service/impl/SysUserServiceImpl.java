@@ -9,9 +9,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import xyz.onlytype.entity.SysMenu;
-import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.mapper.SysMenuMapper;
 import xyz.onlytype.mapper.SysUserMapper;
+import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.security.token.TokenManager;
 import xyz.onlytype.service.SysUserService;
 import org.springframework.stereotype.Service;
@@ -68,7 +68,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     /**
      * 获取权限菜单
      *
-     * @return
+     * @return 权限列表
      */
 
     @Override

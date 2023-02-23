@@ -1,17 +1,15 @@
 package xyz.onlytype.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import xyz.onlytype.entity.SysMenu;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * 菜单表
-(SysMenu)表服务接口
- *
- * @author 白也
- * @since 2023-02-12 20:44:31
- */
+* @author 白也
+* @description 针对表【sys_menu(菜单表
+)】的数据库操作Service
+* @createDate 2023-02-23 10:27:34
+*/
 public interface SysMenuService extends IService<SysMenu> {
-
 
     /**
      * 新增菜单
@@ -33,7 +31,4 @@ public interface SysMenuService extends IService<SysMenu> {
      * @return true/false
      */
     boolean updateMenu(SysMenu sysMenu);
-
-
 }
-
