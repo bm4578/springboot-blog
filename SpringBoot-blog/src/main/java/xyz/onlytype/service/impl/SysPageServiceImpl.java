@@ -10,6 +10,8 @@ import xyz.onlytype.service.SysPageService;
 import xyz.onlytype.mapper.SysPageMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author 白也
  * @description 针对表【sys_page(页面基本信息
@@ -29,8 +31,8 @@ public class SysPageServiceImpl extends ServiceImpl<SysPageMapper, SysPage>
      * @return
      */
     @Override
-    public PageVO<SysPage> selectPage(int pageNum, int pageSize) {
-        return PageVO.pageList(sysPageMapper.selectPage(new Page<>(pageNum, pageSize), null));
+    public List<SysPage> selectPage() {
+        return sysPageMapper.selectList(null);
     }
 
     /**

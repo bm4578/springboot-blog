@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import xyz.onlytype.config.mybatisplus.PageVO;
 import xyz.onlytype.entity.SysPage;
 
+import java.util.List;
+
 /**
 * @author 白也
 * @description 针对表【sys_page(页面基本信息
@@ -15,7 +17,7 @@ public interface SysPageService extends IService<SysPage> {
      * 查询首页菜单
      * @return
      */
-    PageVO<SysPage> selectPage(int pageNum, int pageSize);
+    List<SysPage> selectPage();
     /**
      * 新增菜单
      * @param sysPage 新增菜单

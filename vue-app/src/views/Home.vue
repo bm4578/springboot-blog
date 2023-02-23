@@ -19,6 +19,7 @@
 import TopBar from '../components/bar/TopBar.vue'
 import BlogList from './body/BlogList.vue'
 import BottomBar from "../components/bottom/BottomBar.vue";
+
 </script>
 
 <style scoped>

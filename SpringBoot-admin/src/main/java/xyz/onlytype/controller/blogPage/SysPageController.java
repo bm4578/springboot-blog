@@ -28,14 +28,10 @@ public class SysPageController {
      * @return
      */
 
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "int", name = "pageNum", value = "", required = true),
-            @ApiImplicitParam(paramType = "query", dataType = "int", name = "pageSize", value = "", required = true)
-    })
     @ApiOperation(value = "查询首页菜单", notes = "查询首页菜单", httpMethod = "GET")
     @GetMapping
-    public ResultModel queryPageList(int pageNum,int pageSize) {
-        return ResultModel.ok(sysPageService.selectPage(pageNum, pageSize));
+    public ResultModel queryPageList() {
+        return ResultModel.ok(sysPageService.selectPage());
     }
 
     /**
