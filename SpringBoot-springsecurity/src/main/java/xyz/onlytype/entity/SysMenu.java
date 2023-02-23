@@ -23,7 +23,7 @@ public class SysMenu implements Serializable {
      * 菜单id
      */
     @TableId
-    private String menuId;
+    private Long menuId;
 
     /**
      * code

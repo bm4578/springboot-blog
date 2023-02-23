@@ -58,7 +58,7 @@ public class SysPageServiceImpl extends ServiceImpl<SysPageMapper, SysPage>
      * @return true/false
      */
     @Override
-    public boolean deleteMenu(String menuId) {
+    public boolean deleteMenu(Long menuId) {
         return sysPageMapper.deleteById(menuId) > 0;
     }
 

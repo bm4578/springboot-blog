@@ -23,7 +23,7 @@ public interface SysMenuService extends IService<SysMenu> {
      * @param menuId 菜单Id
      * @return true/false
      */
-    boolean deleteMenu(String menuId);
+    boolean deleteMenu(Long menuId);
 
     /**
      * 修改菜单

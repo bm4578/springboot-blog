@@ -76,6 +76,8 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
                 || StringUtils.contains(request.getServletPath(), "/api/user/getMsg")
                 // 首页文章
                 || StringUtils.contains(request.getServletPath(), "/api/article/all")
+                // 首页菜单
+                || StringUtils.contains(request.getServletPath(), "/api/article/menu")
         ) {
             chain.doFilter(request, response);
         } else {

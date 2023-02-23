@@ -19,7 +19,7 @@ import xyz.onlytype.service.SysUserService;
  * @date 2023/2/23 9:27 上午
  */
 
-@Api(value = "/api/userManagement", tags = {"菜单管理"})
+@Api(value = "/api/userManagement", tags = {"权限菜单"})
 @RestController
 @RequestMapping("/api/userManagement")
 public class SysMenuController {
@@ -66,11 +66,11 @@ public class SysMenuController {
      */
 
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", dataType = "string", name = "menuId", value = "菜单Id", required = true)
+            @ApiImplicitParam(paramType = "query", dataType = "long", name = "menuId", value = "菜单Id", required = true)
     })
     @ApiOperation(value = "删除菜单", notes = "删除菜单", httpMethod = "DELETE")
     @DeleteMapping
-    public ResultModel deleteMenu(String menuId) {
+    public ResultModel deleteMenu(Long menuId) {
         return ResultModel.ok(sysMenuService.deleteMenu(menuId));
     }
 
