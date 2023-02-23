@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,50 +13,31 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * 菜单表
- * @author 白也
- * @TableName sys_menu
+ * 角色表
+ * @TableName sys_role
  */
-@ApiModel(description = "菜单表")
-@TableName(value = "sys_menu")
+@ApiModel(description = "角色表")
+@TableName(value ="sys_role")
 @Data
-public class SysMenu implements Serializable {
+public class SysRole implements Serializable {
     /**
-     * 菜单id
+     * 角色id
      */
-    @ApiModelProperty("菜单id")
+    @ApiModelProperty("角色id")
     @TableId
-    private String menuId;
+    private String roleId;
 
     /**
-     * 菜单名称
+     * 角色名称
      */
-    @ApiModelProperty("菜单名称")
-    private String menuName;
+    @ApiModelProperty("角色名称")
+    private String roleName;
 
     /**
-     * 菜单图标
+     * 唯一key
      */
-    @ApiModelProperty("菜单图标")
-    private String menuIcon;
-
-    /**
-     * 菜单URL
-     */
-    @ApiModelProperty("菜单URL")
-    private String menuUrl;
-
-    /**
-     * code
-     */
-    @ApiModelProperty("code")
-    private String menuCode;
-
-    /**
-     * 父级code
-     */
-    @ApiModelProperty("父级code")
-    private String parentCode;
+    @ApiModelProperty("唯一key")
+    private String roleKey;
 
     /**
      * 创建时间
@@ -70,11 +50,6 @@ public class SysMenu implements Serializable {
      */
     @ApiModelProperty("更新时间")
     private Date updateTime;
-
-    @ApiModelProperty(hidden = true)
-    @TableField(exist = false)
-    private List<SysMenu> childNode;
-
 
     @ApiModelProperty(hidden = true)
     @TableField(exist = false)

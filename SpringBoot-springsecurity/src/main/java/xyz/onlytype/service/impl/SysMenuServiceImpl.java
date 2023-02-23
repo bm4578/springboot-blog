@@ -2,7 +2,7 @@ package xyz.onlytype.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.onlytype.dao.SysMenuDao;
+import xyz.onlytype.mapper.SysMenuMapper;
 import xyz.onlytype.entity.SysMenu;
 import xyz.onlytype.service.SysMenuService;
 import org.springframework.stereotype.Service;
@@ -18,32 +18,54 @@ import java.util.List;
  * @since 2023-02-12 20:44:31
  */
 @Service("sysMenuService")
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
     @Autowired
-    private SysMenuDao sysMenuDao;
+    private SysMenuMapper sysMenuMapper;
 
+
+    /**
+     * 新增菜单
+     *
+     * @param sysMenu 新增菜单
+     * @return true/false
+     */
     @Override
-    public List<SysMenu> selectAllMenus() {
-        List<SysMenu> sysMenus = sysMenuDao.selectList(null);
-        //树状结构转化
-        List<SysMenu> menuTree = buildMenusTree(sysMenus);
-        return menuTree;
+    public boolean addMenu(SysMenu sysMenu) {
+        SysMenu menu = new SysMenu();
+        menu.setMenuName(sysMenu.getMenuName());
+        menu.setMenuUrl(sysMenu.getMenuUrl());
+        menu.setMenuIcon(sysMenu.getMenuIcon());
+        menu.setMenuCode(sysMenu.getMenuCode());
+        menu.setParentCode(sysMenu.getParentCode());
+        return sysMenuMapper.insert(menu) > 0;
     }
 
-    private List<SysMenu> buildMenusTree(List<SysMenu> sysMenus) {
-        List<SysMenu> finalMenus = new ArrayList<>();
-        for (SysMenu sysMenu : sysMenus) {
-            for (SysMenu menu : sysMenus) {
-                if (sysMenu.getMenuCode().equals(menu.getParentCode())){
-                    sysMenu.getChildNode().add(menu);
-                }
-            }
-            //提取父节点
-            if (sysMenu.getParentCode() == null) {
-                finalMenus.add(sysMenu);
-            }
-        }
-        return finalMenus;
+    /**
+     * 删除菜单
+     *
+     * @param menuId 菜单Id
+     * @return
+     */
+    @Override
+    public boolean deleteMenu(String menuId) {
+        return sysMenuMapper.deleteById(menuId) > 0;
+    }
+
+    /**
+     * 修改菜单
+     *
+     * @param sysMenu 菜单信息
+     * @return true/false
+     */
+    @Override
+    public boolean updateMenu(SysMenu sysMenu) {
+        SysMenu menu = new SysMenu();
+        menu.setMenuName(sysMenu.getMenuName());
+        menu.setMenuIcon(sysMenu.getMenuIcon());
+        menu.setMenuIcon(sysMenu.getMenuIcon());
+        menu.setMenuCode(sysMenu.getMenuCode());
+        menu.setParentCode(sysMenu.getParentCode());
+        return sysMenuMapper.updateById(sysMenu) > 0;
     }
 }
 

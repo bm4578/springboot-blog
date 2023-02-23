@@ -5,10 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import xyz.onlytype.dao.SysUserDao;
+import xyz.onlytype.mapper.SysUserMapper;
 import xyz.onlytype.entity.SecurityUser;
 import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.security.exception.CustomerAuthenionException;
@@ -17,14 +16,14 @@ import java.util.*;
 
 /**
  * @author 白也
- * @title 用户注册
+ * @title 用户登录注册
  * @date 2023/1/28 3:25 下午
  */
 @Service("SysUserImpl")
 @Slf4j
 public class SysUserImpl implements UserDetailsService {
     @Autowired
-    private SysUserDao sysUserDao;
+    private SysUserMapper sysUserMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -41,13 +40,13 @@ public class SysUserImpl implements UserDetailsService {
         //从数据库查询用户信息
         LambdaQueryWrapper<SysUser> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(SysUser::getUsername, username);
-        SysUser user = sysUserDao.selectOne(queryWrapper);
+        SysUser user = sysUserMapper.selectOne(queryWrapper);
         if (Objects.isNull(user)) {
             log.error("用户名不存在 ！！！");
             throw new CustomerAuthenionException("用户名不存在 ! ! !");
         }
         //根据用户名从数据库中查询角色信息
-        List<String> roleByName = sysUserDao.findRoleByUserId(user.getUserId());
+        List<String> roleByName = sysUserMapper.findRoleByUserId(user.getUserId());
         //添加相应权限
         SecurityUser securityUser = new SecurityUser();
         securityUser.setSysUser(user);
@@ -87,6 +86,6 @@ public class SysUserImpl implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // 邮箱存入数据库
         user.setIsEmail(email);
-        return sysUserDao.insert(user) > 0;
+        return sysUserMapper.insert(user) > 0;
     }
 }

@@ -1,6 +1,5 @@
 package xyz.onlytype.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -8,12 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
-import xyz.onlytype.dao.SysMenuDao;
-import xyz.onlytype.dao.SysUserDao;
-import xyz.onlytype.entity.SecurityUser;
+import xyz.onlytype.mapper.SysMenuMapper;
+import xyz.onlytype.mapper.SysUserMapper;
 import xyz.onlytype.entity.SysMenu;
 import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.security.token.TokenManager;
@@ -22,7 +18,6 @@ import org.springframework.stereotype.Service;
 import xyz.onlytype.vo.UserInfoVo;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -33,7 +28,7 @@ import java.util.List;
  */
 @Schema(description = "用户表(SysUser)表服务实现类")
 @Service("sysUserService")
-public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
     @Schema(hidden = true)
     @Value("${spring.mail.username}")
     // 邮件发送人
@@ -43,12 +38,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
     private JavaMailSender mailSender;
     @Schema(hidden = true)
     @Autowired
-    private SysUserDao sysUserDao;
+    private SysUserMapper sysUserMapper;
     @Schema(hidden = true)
     @Autowired
     private TokenManager tokenManager;
     @Autowired
-    private SysMenuDao sysMenuDao;
+    private SysMenuMapper sysMenuMapper;
 
     /**
      * 发送邮箱信息
@@ -83,12 +78,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
         //解析token
         Claims claims = tokenManager.getClaimsFromToken(token);
         //基本信息
-        UserInfoVo byUserinfo = sysUserDao.findByUserinfo(claims.getIssuer());
+        UserInfoVo byUserinfo = sysUserMapper.findByUserinfo(claims.getIssuer());
         //权限菜单查询
         //父级菜单
-        List<SysMenu> sysMenus = sysUserDao.finMenuByUserRoles(claims.getSubject());
+        List<SysMenu> sysMenus = sysUserMapper.finMenuByUserRoles(claims.getSubject());
         //所有子菜单
-        List<SysMenu> menuList = sysMenuDao.selectList(null);
+        List<SysMenu> menuList = sysMenuMapper.selectList(null);
         //子菜单查询
         for (SysMenu sysMenu : sysMenus) {
             ArrayList<SysMenu> menuArrayList = new ArrayList<>();
@@ -111,7 +106,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
      */
     @Override
     public Boolean deleteUser(String userId) {
-        return sysUserDao.deleteById(userId) > 0;
+        return sysUserMapper.deleteById(userId) > 0;
     }
 
     /**
@@ -122,7 +117,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUser> impleme
      */
     @Override
     public Boolean recoverUser(String userId) {
-        return sysUserDao.recoverUser(userId) > 0;
+        return sysUserMapper.recoverUser(userId) > 0;
     }
 }
 

@@ -61,6 +61,7 @@ const handleUpdateValue = (key,item)=>{
 onMounted(()=>{
   user_info.username=user.$state.data.username
   user_info.isImg=user.$state.data.isImg
+  console.log(user.$state.data)
   for (let sysMenusKey in user.$state.data.sysMenus) {
     menuOptions[sysMenusKey] = user.$state.data.sysMenus[sysMenusKey]
   }

@@ -15,7 +15,28 @@ import java.util.List;
  */
 public interface SysMenuService extends IService<SysMenu> {
 
-    List<SysMenu> selectAllMenus();
+
+    /**
+     * 新增菜单
+     * @param sysMenu 新增菜单
+     * @return true/false
+     */
+    boolean addMenu(SysMenu sysMenu);
+
+    /**
+     * 删除菜单
+     * @param menuId 菜单Id
+     * @return true/false
+     */
+    boolean deleteMenu(String menuId);
+
+    /**
+     * 修改菜单
+     * @param sysMenu 菜单信息
+     * @return true/false
+     */
+    boolean updateMenu(SysMenu sysMenu);
+
 
 }
 

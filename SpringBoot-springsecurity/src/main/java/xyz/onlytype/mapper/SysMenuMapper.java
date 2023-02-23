@@ -1,4 +1,4 @@
-package xyz.onlytype.dao;
+package xyz.onlytype.mapper;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import xyz.onlytype.entity.SysMenu;
  * @since 2023-02-12 20:44:30
  */
 @Mapper
-public interface SysMenuDao extends BaseMapper<SysMenu> {
+public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
 }
 
