@@ -1,10 +1,7 @@
 package xyz.onlytype.mapper;
 
-import java.util.List;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import xyz.onlytype.entity.SysMenu;
 
 /**

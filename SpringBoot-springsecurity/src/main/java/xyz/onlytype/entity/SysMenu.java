@@ -1,25 +1,23 @@
 package xyz.onlytype.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-
 /**
  * 菜单表
- * @author 白也
+
  * @TableName sys_menu
  */
 @ApiModel(description = "菜单表")
-@TableName(value = "sys_menu")
+@TableName(value ="sys_menu")
 @Data
 public class SysMenu implements Serializable {
     /**
@@ -27,7 +25,14 @@ public class SysMenu implements Serializable {
      */
     @ApiModelProperty("菜单id")
     @TableId
-    private String menuId;
+    private Long menuId;
+
+    /**
+     * code
+     */
+    @ApiModelProperty("code")
+    @TableId
+    private String menuCode;
 
     /**
      * 菜单名称
@@ -48,12 +53,6 @@ public class SysMenu implements Serializable {
     private String menuUrl;
 
     /**
-     * code
-     */
-    @ApiModelProperty("code")
-    private String menuCode;
-
-    /**
      * 父级code
      */
     @ApiModelProperty("父级code")
@@ -70,11 +69,12 @@ public class SysMenu implements Serializable {
      */
     @ApiModelProperty("更新时间")
     private Date updateTime;
-
-    @ApiModelProperty(hidden = true)
+    /**
+     * 子菜单
+     */
+    @ApiModelProperty("子菜单")
     @TableField(exist = false)
     private List<SysMenu> childNode;
-
 
     @ApiModelProperty(hidden = true)
     @TableField(exist = false)

@@ -25,19 +25,19 @@ public class SysUserRole implements Serializable {
      */
     @ApiModelProperty("用户角色id")
     @TableId
-    private String userRoleId;
+    private Long userRoleId;
 
     /**
      * 用户id
      */
     @ApiModelProperty("用户id")
-    private String userId;
+    private Long userId;
 
     /**
      * 角色id
      */
     @ApiModelProperty("角色id")
-    private String roleId;
+    private Long roleId;
 
     /**
      * 创建时间

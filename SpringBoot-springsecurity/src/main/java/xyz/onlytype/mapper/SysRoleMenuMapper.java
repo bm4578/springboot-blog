@@ -1,8 +1,8 @@
 package xyz.onlytype.mapper;
 
-import xyz.onlytype.entity.SysRoleMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import xyz.onlytype.entity.SysRoleMenu;
 
 /**
 * @author 白也

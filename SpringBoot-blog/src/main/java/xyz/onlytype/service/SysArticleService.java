@@ -1,15 +1,14 @@
 package xyz.onlytype.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import xyz.onlytype.config.mybatisplus.PageVO;
 import xyz.onlytype.entity.SysArticle;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * 文章标题(SysArticle)表服务接口
- *
- * @author 白也
- * @since 2023-02-20 10:47:27
- */
+* @author 白也
+* @description 针对表【sys_article(文章标题)】的数据库操作Service
+* @createDate 2023-02-23 11:45:28
+*/
 public interface SysArticleService extends IService<SysArticle> {
     /**
      * 分页查询文章列表
@@ -39,6 +38,4 @@ public interface SysArticleService extends IService<SysArticle> {
      * @return
      */
     Boolean updateArticle(SysArticle sysArticle);
-
 }
-

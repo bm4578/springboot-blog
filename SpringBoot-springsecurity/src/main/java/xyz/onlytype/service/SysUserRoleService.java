@@ -1,9 +1,7 @@
 package xyz.onlytype.service;
 
-import xyz.onlytype.config.mybatisplus.PageVO;
-import xyz.onlytype.entity.SysUserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
-import xyz.onlytype.vo.SysUserRoleVO;
+import xyz.onlytype.entity.SysUserRole;
 
 /**
 * @author 白也

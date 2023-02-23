@@ -1,7 +1,7 @@
 package xyz.onlytype.service;
 
-import xyz.onlytype.entity.SysRoleMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import xyz.onlytype.entity.SysRoleMenu;
 
 /**
 * @author 白也

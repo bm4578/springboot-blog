@@ -2,9 +2,6 @@ package xyz.onlytype.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import xyz.onlytype.entity.SysMenu;
-import xyz.onlytype.vo.UserMenuVo;
-
-import java.util.List;
 
 /**
  * 菜单表

@@ -2,13 +2,10 @@ package xyz.onlytype.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.onlytype.mapper.SysMenuMapper;
 import xyz.onlytype.entity.SysMenu;
+import xyz.onlytype.mapper.SysMenuMapper;
 import xyz.onlytype.service.SysMenuService;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 菜单表
@@ -18,7 +15,9 @@ import java.util.List;
  * @since 2023-02-12 20:44:31
  */
 @Service("sysMenuService")
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
+        implements SysMenuService{
+
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
@@ -67,5 +66,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         menu.setParentCode(sysMenu.getParentCode());
         return sysMenuMapper.updateById(sysMenu) > 0;
     }
+
 }
 
