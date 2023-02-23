@@ -11,6 +11,7 @@ import lombok.Data;
 /**
  * 页面基本信息
 
+ * @author 白也
  * @TableName sys_page
  */
 @TableName(value ="sys_page")

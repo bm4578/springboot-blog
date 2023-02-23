@@ -73,8 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-resources", "/swagger-resources/configuration/security",
                         "/swagger-ui.html", "/webjars/**").permitAll()
                 .antMatchers("/api/user/**").permitAll()
-                //首页文章
-                .antMatchers("/api/article/all/**").permitAll()
+                //首页info
+                .antMatchers("/api/article/**").permitAll()
                 .anyRequest().authenticated()
                 //注销路径
                 .and().logout().logoutUrl("/api/user/logout")

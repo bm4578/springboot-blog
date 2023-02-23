@@ -53,7 +53,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @return
      */
     @Override
-    public boolean deleteMenu(String menuId) {
+    public boolean deleteMenu(Long menuId) {
         return sysMenuMapper.deleteById(menuId) > 0;
     }
 
