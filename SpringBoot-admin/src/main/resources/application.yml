@@ -13,7 +13,7 @@ spring:
 #  datasource:
 #    type: com.alibaba.druid.pool.DruidDataSource
 #    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://192.168.99.102:3306/minio?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+#    url: jdbc:mysql://192.168.99.102:3306/springboot-blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
 #    username: root
 #    password: ######## mysql密码
 #  #redis配置
