@@ -1,12 +1,8 @@
 package xyz.onlytype.mapper;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import xyz.onlytype.config.mybatisplus.PageVO;
-import xyz.onlytype.entity.SysUserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import xyz.onlytype.vo.SysUserRoleVO;
+import xyz.onlytype.entity.SysUserRole;
 
 /**
 * @author 白也

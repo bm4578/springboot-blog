@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,7 +24,7 @@ public class SysRole implements Serializable {
      */
     @ApiModelProperty("角色id")
     @TableId
-    private String roleId;
+    private Long roleId;
 
     /**
      * 角色名称

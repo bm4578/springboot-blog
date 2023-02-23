@@ -32,7 +32,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      * @param userId 用户id
      * @return
      */
-    List<String> findRoleByUserId(String userId);
+    List<String> findRoleByUserId(Long userId);
 
 
     /**

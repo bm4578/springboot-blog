@@ -1,7 +1,7 @@
 package xyz.onlytype.service;
 
-import xyz.onlytype.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import xyz.onlytype.entity.SysRole;
 import xyz.onlytype.vo.SysUserRoleVO;
 
 import java.util.List;

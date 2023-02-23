@@ -4,21 +4,22 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import xyz.onlytype.config.mybatisplus.PageVO;
-import xyz.onlytype.dao.SysArticleDao;
 import xyz.onlytype.entity.SysArticle;
+import xyz.onlytype.mapper.SysMenuMapper;
 import xyz.onlytype.service.SysArticleService;
+import xyz.onlytype.mapper.SysArticleMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * 文章标题(SysArticle)表服务实现类
- *
- * @author 白也
- * @since 2023-02-20 10:47:27
- */
-@Service("sysArticleService")
-public class SysArticleServiceImpl extends ServiceImpl<SysArticleDao, SysArticle> implements SysArticleService {
+* @author 白也
+* @description 针对表【sys_article(文章标题)】的数据库操作Service实现
+* @createDate 2023-02-23 11:45:28
+*/
+@Service
+public class SysArticleServiceImpl extends ServiceImpl<SysArticleMapper, SysArticle>
+    implements SysArticleService{
     @Autowired
-    private SysArticleDao sysArticleDao;
+    private SysArticleMapper sysArticleMapper;
     /**
      * 分页查询文章列表
      * @param pageNum 分页条数
@@ -28,7 +29,7 @@ public class SysArticleServiceImpl extends ServiceImpl<SysArticleDao, SysArticle
 
     @Override
     public PageVO<SysArticle> pageList(int pageNum, int pageSize) {
-        return PageVO.pageList(sysArticleDao.selectPage(new Page<>(pageNum,pageSize),null));
+        return PageVO.pageList(sysArticleMapper.selectPage(new Page<>(pageNum,pageSize),null));
     }
 
     /**
@@ -47,7 +48,7 @@ public class SysArticleServiceImpl extends ServiceImpl<SysArticleDao, SysArticle
         article.setArticleType(sysArticle.getArticleType());
         article.setArticleCreate(sysArticle.getArticleCreate());
         article.setArticleUpdate(sysArticle.getArticleUpdate());
-        return sysArticleDao.insert(article) > 0;
+        return sysArticleMapper.insert(article) > 0;
     }
 
     /**
@@ -58,7 +59,7 @@ public class SysArticleServiceImpl extends ServiceImpl<SysArticleDao, SysArticle
      */
     @Override
     public Boolean deleteArticle(String articleId) {
-        return sysArticleDao.deleteById(articleId) >0 ;
+        return sysArticleMapper.deleteById(articleId) >0 ;
     }
 
     /**
@@ -77,7 +78,10 @@ public class SysArticleServiceImpl extends ServiceImpl<SysArticleDao, SysArticle
         article.setArticleType(sysArticle.getArticleType());
         article.setArticleCreate(sysArticle.getArticleCreate());
         article.setArticleUpdate(sysArticle.getArticleUpdate());
-        return sysArticleDao.updateById(article) > 0;
+        return sysArticleMapper.updateById(article) > 0;
     }
 }
+
+
+
 

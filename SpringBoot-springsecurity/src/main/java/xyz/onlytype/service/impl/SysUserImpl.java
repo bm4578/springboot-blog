@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.mapper.SysUserMapper;
 import xyz.onlytype.entity.SecurityUser;
-import xyz.onlytype.entity.SysUser;
 import xyz.onlytype.security.exception.CustomerAuthenionException;
 
 import java.util.*;
@@ -53,7 +53,6 @@ public class SysUserImpl implements UserDetailsService {
         //设置相应权限列表
         // TODO 设置权限
         securityUser.setPermissionList(roleByName);
-
         return securityUser;
     }
 

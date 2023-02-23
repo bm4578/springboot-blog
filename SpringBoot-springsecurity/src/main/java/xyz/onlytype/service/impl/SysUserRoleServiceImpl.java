@@ -1,15 +1,11 @@
 package xyz.onlytype.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import xyz.onlytype.config.mybatisplus.PageVO;
 import xyz.onlytype.entity.SysUserRole;
 import xyz.onlytype.service.SysUserRoleService;
 import xyz.onlytype.mapper.SysUserRoleMapper;
 import org.springframework.stereotype.Service;
-import xyz.onlytype.vo.SysUserRoleVO;
 
 /**
  * @author 白也
