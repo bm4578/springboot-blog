@@ -17,10 +17,18 @@ public class SysMenuTree {
             //获取父节点
             if (StringUtils.isEmpty(menu.getParentCode())){
                 menuArrayList.add(menu);
+                //业务需要，一般不用
+                if (menu.getChildren().isEmpty()){
+                    menu.setChildren(null);
+                }
             }
-            for (SysMenu  childNode: sysMenus) {
+            for (SysMenu childNode: sysMenus) {
                 if (menu.getMenuCode().equals(childNode.getParentCode())) {
                     menu.addChild(childNode);
+                    //业务需要，一般不用
+                    if (childNode.getChildren().isEmpty()){
+                        childNode.setChildren(null);
+                    }
                 }
             }
         }

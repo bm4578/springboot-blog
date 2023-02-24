@@ -66,7 +66,7 @@ public class SysMenu implements Serializable{
      */
     @ApiModelProperty(hidden = true)
     @TableField(exist = false)
-    private List<SysMenu> children = new ArrayList<SysMenu>();
+    private List<SysMenu> children = new ArrayList<>();
 
     //菜单的实体类中加addChild方法
     public void addChild(SysMenu menu) {

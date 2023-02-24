@@ -32,7 +32,7 @@
                   :options="menuOptions"
                   key-field="menuName"
                   label-field="menuName"
-                  children-field="childNode"
+                  children-field="children"
               />
             </n-layout-sider>
 
@@ -56,6 +56,7 @@ import router from "../../router";
 const user = userInfo()
 let collapsed = ref(false)
 const menuOptions = reactive([])
+
 let user_info = reactive(
     {
       username: '',
@@ -63,14 +64,15 @@ let user_info = reactive(
     })
 //选中菜单执行操作
 const handleUpdateValue = (key, item) => {
+  console.log(item)
   router.replace(item.menuUrl);
 }
 onMounted(() => {
   user_info.username = user.$state.data.username
   user_info.isImg = user.$state.data.isImg
-  console.log(user.$state.data)
+  console.log(user.$state.data.sysMenus)
   for (let sysMenusKey in user.$state.data.sysMenus) {
-    menuOptions[sysMenusKey] = user.$state.data.sysMenus[sysMenusKey]
+    menuOptions.push(user.$state.data.sysMenus[sysMenusKey])
   }
 })
 
