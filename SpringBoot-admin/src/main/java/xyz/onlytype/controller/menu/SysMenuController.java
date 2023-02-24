@@ -19,28 +19,25 @@ import xyz.onlytype.service.SysUserService;
  * @date 2023/2/23 9:27 上午
  */
 
-@Api(value = "/api/userManagement", tags = {"权限菜单"})
+@Api(value = "/api/menu", tags = {"菜单管理"})
 @RestController
-@RequestMapping("/api/userManagement")
+@RequestMapping("/api/menu")
 public class SysMenuController {
-    @Autowired
-    private SysUserService sysUserService;
     @Autowired
     private SysMenuService sysMenuService;
     @Autowired
     private SysRoleMenuService sysRoleMenuService;
 
     /**
-     * 角色菜单查询
-     *
-     * @return 菜单信息
+     * 所有菜单查询
+     * @return
      */
-    @ApiOperation(value = "查询菜单列表", notes = "查询菜单列表", httpMethod = "GET")
-
-    @GetMapping("/menus")
-    public ResultModel selectMenuList() {
-        return ResultModel.ok(sysUserService.findByUserinfo());
+    @ApiOperation(value = "所有菜单查询", notes = "所有菜单查询", httpMethod = "GET")
+    @GetMapping
+    public ResultModel queryAll(){
+        return ResultModel.ok(sysMenuService.seleteAllMenus());
     }
+
 
     /**
      * 新增菜单
@@ -91,32 +88,32 @@ public class SysMenuController {
     }
 
     /**
-     * 新增用户菜单
+     * 新增角色菜单
      * @param sysRoleMenu 用户信息
      * @return true/false
      */
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", dataType = "SysRoleMenu", name = "sysRoleMenu", value = "用户信息", required = true)
     })
-    @ApiOperation(value = "新增用户菜单", notes = "新增用户菜单", httpMethod = "POST")
+    @ApiOperation(value = "新增角色菜单", notes = "新增角色菜单", httpMethod = "POST")
     @PostMapping("/addUserMenu")
     public ResultModel addUserMenu(SysRoleMenu sysRoleMenu){
-        return ResultModel.ok(sysRoleMenuService.addUserMenu(sysRoleMenu));
+        return ResultModel.ok(sysRoleMenuService.addRoleMenu(sysRoleMenu));
     }
 
 
     /**
-     * 删除用户菜单
+     * 删除角色菜单
      * @param roleMenuId 用户id
      * @return true/false
      */
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", dataType = "string", name = "roleMenuId", value = "用户id", required = true)
     })
-    @ApiOperation(value = "删除用户菜单", notes = "删除用户菜单", httpMethod = "DELETE")
+    @ApiOperation(value = "删除角色菜单", notes = "删除角色菜单", httpMethod = "DELETE")
     @DeleteMapping("/deleteUserMenu")
     public ResultModel deleteUserMenu(String roleMenuId){
-        return ResultModel.ok(sysRoleMenuService.deleteUserMenu(roleMenuId));
+        return ResultModel.ok(sysRoleMenuService.deleteRoleMenu(roleMenuId));
     }
 
 }

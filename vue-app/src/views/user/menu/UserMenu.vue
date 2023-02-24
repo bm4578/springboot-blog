@@ -1,5 +1,5 @@
 <template>
-<h1>用户菜单</h1>
+<h1>权限菜单</h1>
 </template>
 
 <script>

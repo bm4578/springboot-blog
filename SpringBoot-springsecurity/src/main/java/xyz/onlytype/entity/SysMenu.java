@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import lombok.Data;
  */
 @TableName(value ="sys_menu")
 @Data
-public class SysMenu implements Serializable {
+public class SysMenu implements Serializable{
     /**
      * 菜单id
      */
@@ -65,7 +66,15 @@ public class SysMenu implements Serializable {
      */
     @ApiModelProperty(hidden = true)
     @TableField(exist = false)
-    private List<SysMenu> childNode;
+    private List<SysMenu> children = new ArrayList<SysMenu>();
+
+    //菜单的实体类中加addChild方法
+    public void addChild(SysMenu menu) {
+        if (children == null) {
+            children = new ArrayList<>();
+        }
+        children.add(menu);
+    }
 
 
     @TableField(exist = false)

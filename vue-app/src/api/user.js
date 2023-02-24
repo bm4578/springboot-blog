@@ -18,7 +18,7 @@ export function isToken(){
 //获取用户基本信息
 export function user_info(){
     return request({
-        url:'/api/userManagement/menus',
+        url:'/api/userInfo',
         method:"get",
     })
 }

@@ -5,7 +5,6 @@ import article from '../views/body/Article.vue'
 import BlogList from '../views/body/BlogList.vue'
 import {page_menu} from "../api/menu.js";
 
-
 const routes = [
     {
         path: "/",
