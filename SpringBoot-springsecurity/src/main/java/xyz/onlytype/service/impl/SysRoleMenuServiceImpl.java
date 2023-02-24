@@ -22,13 +22,13 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
     private SysRoleMenuMapper sysRoleMenuMapper;
 
     /**
-     * 新增用户菜单
+     * 新增角色菜单
      *
      * @param sysRoleMenu 用户信息
      * @return true/false
      */
     @Override
-    public boolean addUserMenu(SysRoleMenu sysRoleMenu) {
+    public boolean addRoleMenu(SysRoleMenu sysRoleMenu) {
         SysRoleMenu menu = new SysRoleMenu();
         menu.setRoleId(sysRoleMenu.getRoleId());
         menu.setMenuId(sysRoleMenu.getMenuId());
@@ -41,7 +41,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRo
      * @return true/false
      */
     @Override
-    public boolean deleteUserMenu(String roleMenuId) {
+    public boolean deleteRoleMenu(String roleMenuId) {
         return sysRoleMenuMapper.deleteById(roleMenuId) > 0;
     }
 }

@@ -3,6 +3,7 @@ package xyz.onlytype.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,6 +17,7 @@ import xyz.onlytype.security.token.TokenManager;
 import xyz.onlytype.service.SysUserService;
 import org.springframework.stereotype.Service;
 import xyz.onlytype.domain.vo.UserInfoVo;
+import xyz.onlytype.utils.SysMenuTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,22 +81,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         Claims claims = tokenManager.getClaimsFromToken(token);
         //基本信息
         UserInfoVo byUserinfo = sysUserMapper.findByUserinfo(claims.getIssuer());
-        //权限菜单查询
-        //父级菜单
+
+        //权限树菜单查询
+        ArrayList<SysMenu> menuArrayList = new ArrayList<>();
+        //所有菜单查询
         List<SysMenu> sysMenus = sysUserMapper.finMenuByUserRoles(claims.getSubject());
-        //所有子菜单
-        List<SysMenu> menuList = sysMenuMapper.selectList(null);
-        //子菜单查询
-        for (SysMenu sysMenu : sysMenus) {
-            ArrayList<SysMenu> menuArrayList = new ArrayList<>();
-            for (SysMenu menu : menuList) {
-                if (sysMenu.getMenuCode().equals(menu.getParentCode())) {
-                    menuArrayList.add(menu);
-                }
-            }
-            sysMenu.setChildNode(menuArrayList);
-        }
-        byUserinfo.setSysMenus(sysMenus);
+        //list转Tree
+        SysMenuTree.treeUtils(menuArrayList,sysMenus);
+        byUserinfo.setSysMenus(menuArrayList);
         return byUserinfo;
     }
 

@@ -8,6 +8,12 @@ import xyz.onlytype.entity.SysMenu;
 import xyz.onlytype.service.SysMenuService;
 import xyz.onlytype.mapper.SysMenuMapper;
 import org.springframework.stereotype.Service;
+import xyz.onlytype.utils.SysMenuTree;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
 * @author 白也
@@ -17,10 +23,25 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
-    implements SysMenuService{
+    implements SysMenuService {
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
+
+    /**
+     * 查询所有菜单
+     *
+     * @return
+     */
+    @Override
+    public List<SysMenu> seleteAllMenus() {
+        //所有节点
+        ArrayList<SysMenu> menuArrayList = new ArrayList<>();
+        List<SysMenu> allList = sysMenuMapper.selectList(null);
+        //list转Tree
+        SysMenuTree.treeUtils(menuArrayList,allList);
+        return menuArrayList;
+    }
 
     /**
      * 新增菜单
@@ -73,6 +94,10 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         menu.setParentCode(sysMenu.getParentCode());
         return sysMenuMapper.updateById(sysMenu) > 0;
     }
+
+
+
+
 }
 
 

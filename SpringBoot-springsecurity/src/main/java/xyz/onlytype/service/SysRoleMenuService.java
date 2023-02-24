@@ -14,16 +14,16 @@ import xyz.onlytype.entity.SysUserRole;
 */
 public interface SysRoleMenuService extends IService<SysRoleMenu> {
     /**
-     * 新增用户菜单
+     * 新增角色菜单
      * @param sysRoleMenu 用户信息
      * @return true/false
      */
-    boolean addUserMenu(SysRoleMenu sysRoleMenu);
+    boolean addRoleMenu(SysRoleMenu sysRoleMenu);
 
     /**
      * 删除用户菜单
      * @param roleMenuId 用户id
      * @return true/false
      */
-    boolean deleteUserMenu(String roleMenuId);
+    boolean deleteRoleMenu(String roleMenuId);
 }
