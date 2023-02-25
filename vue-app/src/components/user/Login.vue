@@ -67,7 +67,7 @@
 </template>
 <script setup>
 import {ref, reactive,inject} from 'vue'
-import {user_login, isToken,user_info} from '../../api/user.js'
+import {user_login, isToken,user_info} from '../../api/user/user.js'
 import {userStore,userInfo} from "../../store/user/user.js";
 import router from "../../router";
 import {ElMessage,ElNotification} from 'element-plus'

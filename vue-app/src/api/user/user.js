@@ -1,4 +1,4 @@
-import request from '../utils/request.js'
+import request from '../../utils/request.js'
 import qs from 'qs';
 
 export function user_login(data){

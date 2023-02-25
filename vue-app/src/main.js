@@ -6,6 +6,7 @@ import router from "./router";
 import './assets/css/reset.css'
 //引入NaiveUI
 import naive from 'naive-ui'
+//引入ElementPlus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 //引入pinia 来作为持久化存储

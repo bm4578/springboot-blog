@@ -3,7 +3,7 @@ import Home from '../views/Home.vue'
 import User from "../views/user/User.vue";
 import article from '../views/body/Article.vue'
 import BlogList from '../views/body/BlogList.vue'
-import {page_menu} from "../api/menu.js";
+import {page_menu} from "../api/user/menu.js";
 
 const routes = [
     {
