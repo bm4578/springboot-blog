@@ -49,7 +49,7 @@
 <script setup>
 import {ref, reactive,provide, onMounted, markRaw} from 'vue'
 import {UserAstronaut} from '@vicons/fa'
-import {isToken} from '../../api/user.js'
+import {isToken} from '../../api/user/user.js'
 import {userStore,userInfo} from "../../store/user/user.js";
 import router from "../../router";
 import login from '../user/Login.vue'

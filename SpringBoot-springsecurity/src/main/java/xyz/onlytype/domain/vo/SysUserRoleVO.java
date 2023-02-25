@@ -14,7 +14,7 @@ import java.util.Date;
  * @date 2023/2/22 10:22 上午
  */
 
-@ApiModel(description = "")
+@ApiModel(description = "用户角色Vo")
 @Data
 public class SysUserRoleVO implements Serializable {
 
@@ -29,6 +29,12 @@ public class SysUserRoleVO implements Serializable {
      */
     @ApiModelProperty("角色名称")
     private String roleName;
+
+    /**
+     * 唯一key
+     */
+    @ApiModelProperty("唯一key")
+    private String roleKey;
 
     /**
      * 创建时间

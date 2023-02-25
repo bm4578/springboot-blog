@@ -29,6 +29,7 @@ public class SysRoleController {
      * @return 角色id、角色名称
      */
    @ApiOperation(value = "查询所有角色信息", notes = "查询所有角色信息")
+   @GetMapping
    public ResultModel selectAllRoleList(){
        return ResultModel.ok(sysRoleService.selectAllRoleList());
    }
