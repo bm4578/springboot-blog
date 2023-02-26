@@ -21,20 +21,26 @@ import java.util.concurrent.TimeUnit;
 public class TokenManager {
     @Value("${token.secret}")
     private String secret;
-    //创建创建时间
-    private static final long TIME = 1800000;
+    @Value("${token.expireTime}")
+    private long expireTime;
+
+
     /**
      * 生成密钥
+     *
      * @param username 非隐私信息
      */
-    public  String getToken(String username,String permissions) {
-        //过期时间默认30分钟
-        Date expirationDate = new Date(System.currentTimeMillis() + TIME);
+    public String getToken(String username, String permissions) {
+        /*
+          过期时间
+          转换时间单位为1小时
+         */
+        Date expirationDate = new Date(System.currentTimeMillis() + expireTime * 3600000);
         Map<String, Object> claims = new HashMap<>(2);
         //持有人
-        claims.put(Claims.ISSUER,username);
+        claims.put(Claims.ISSUER, username);
         //权限
-        claims.put(Claims.SUBJECT,permissions);
+        claims.put(Claims.SUBJECT, permissions);
         claims.put(Claims.ISSUED_AT, new Date());
         return Jwts.builder()
                 .setClaims(claims)
@@ -45,6 +51,7 @@ public class TokenManager {
 
     /**
      * 解析和校验token
+     *
      * @param token 令牌
      * @return 数据声明
      */
@@ -59,10 +66,11 @@ public class TokenManager {
         }
         return claims;
     }
+
     /**
      * 获取用户名
      */
-    public  String getUserName(String token) {
+    public String getUserName(String token) {
         String username = null;
         try {
             Claims claims = getClaimsFromToken(token);
@@ -72,6 +80,7 @@ public class TokenManager {
         }
         return username;
     }
+
     /**
      * 验证token 是否过期(true:已过期 false:未过期)
      */
@@ -89,7 +98,7 @@ public class TokenManager {
 
     /**
      * 获取token过期的时间 分钟
-     * @return
+     *
      */
     public long getRemainingTime(String token) {
         Claims claims = getClaimsFromToken(token);
