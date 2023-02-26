@@ -1,6 +1,7 @@
 package xyz.onlytype.domain.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -40,12 +41,14 @@ public class SysUserRoleVO implements Serializable {
      * 创建时间
      */
     @ApiModelProperty("创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @ApiModelProperty("更新时间")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date updateTime;
 
     @ApiModelProperty(hidden = true)
